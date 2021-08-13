@@ -1,79 +1,64 @@
-# A .gitignore for Keil projects.
-# Taken mostly from http://www.keil.com/support/man/docs/uv4/uv4_b_filetypes.htm
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
 
-# User-specific uVision files
-*.opt
-*.uvopt
-*.uvoptx
-*.uvgui
-*.uvgui.*
-*.uvguix.*
+# External tool builders
+.externalToolBuilders/
 
-# Listing files
-*.cod
-*.htm
-*.i
-*.lst
-*.map
-*.m51
-*.m66
-# define exception below if needed
-*.scr
+# Locally stored "Eclipse launch configurations"
+*.launch
 
-# Object and HEX files
-*.axf
-*.b[0-3][0-9]
-*.hex
-*.d
-*.crf
-*.elf
-*.hex
-*.h86
-*.lib
-*.obj
-*.o
-*.sbr
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
 
-# Build files
-# define exception below if needed
-*.bat
-*._ia
-*.__i
-*._ii
+# CDT-specific (C/C++ Development Tooling)
+.cproject
 
-# Generated output files
-Listings/*
-Objects/*
+# CDT- autotools
+.autotools
 
-# Debugger files
-# define exception below if needed
-*.ini
+# Java annotation processor (APT)
+.factorypath
 
-# Other files
-*.build_log.htm
-*.cdb
-*.dep
-*.ic
-*.lin
-*.lnp
-*.orc
-# define exception below if needed
-#*.pack
-# define exception below if needed
-#*.pdsc
-#*.plg
-# define exception below if needed
-#*.sct
-#*.sfd
-#*.sfr
+# PDT-specific (PHP Development Tools)
+.buildpath
 
-# Miscellaneous
-*.tra
-*.bin
-*.fed
-*.l1p
-*.l2p
-*.iex
+# sbteclipse plugin
+.target
 
-# To explicitly override the above, define any exceptions here; e.g.:
-!AIS_Project.sct.sct
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Annotation Processing
+.apt_generated/
+.apt_generated_test/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+#compiler output
+Release/
+Debug/
+
+# Uncomment this line if you wish to ignore the project description file.
+# Typically, this file would be tracked if it contains build/dependency configurations:
+#.project
