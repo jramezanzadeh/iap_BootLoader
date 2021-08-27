@@ -42,9 +42,12 @@
 									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="../UserCode/AppMetaData/Inc"/>
 									<listOptionValue builtIn="false" value="../UserCode/CompileOptions/Inc"/>
 									<listOptionValue builtIn="false" value="../UserCode/DataTerminal/Inc"/>
-									<listOptionValue builtIn="false" value="../UserCode/Debug/Inc"/>
+									<listOptionValue builtIn="false" value="../UserCode/Debuging/Inc"/>
+									<listOptionValue builtIn="false" value="../UserCode/FlashOperation/Inc"/>
+									<listOptionValue builtIn="false" value="../UserCode/IntegrityCalc/Inc"/>
 									<listOptionValue builtIn="false" value="../UserCode/LedManager/Inc"/>
 									<listOptionValue builtIn="false" value="../UserCode/Peripheral/Inc"/>
 								</option>
@@ -65,9 +68,12 @@
 									<listOptionValue builtIn="false" value="../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
+									<listOptionValue builtIn="false" value="../UserCode/AppMetaData/Inc"/>
 									<listOptionValue builtIn="false" value="../UserCode/CompileOptions/Inc"/>
 									<listOptionValue builtIn="false" value="../UserCode/DataTerminal/Inc"/>
-									<listOptionValue builtIn="false" value="../UserCode/Debug/Inc"/>
+									<listOptionValue builtIn="false" value="../UserCode/Debuging/Inc"/>
+									<listOptionValue builtIn="false" value="../UserCode/FlashOperation/Inc"/>
+									<listOptionValue builtIn="false" value="../UserCode/IntegrityCalc/Inc"/>
 									<listOptionValue builtIn="false" value="../UserCode/LedManager/Inc"/>
 									<listOptionValue builtIn="false" value="../UserCode/Peripheral/Inc"/>
 								</option>
@@ -179,7 +185,7 @@
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
 								</option>
-								<option id="gnu.cpp.compiler.option.preprocessor.def.symbols.892031126" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols"/>
+								<option id="gnu.cpp.compiler.option.preprocessor.def.symbols.892031126" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false"/>
 								<option id="fr.ac6.managedbuild.gnu.cpp.compiler.option.misc.other.1857675265" name="Other flags" superClass="fr.ac6.managedbuild.gnu.cpp.compiler.option.misc.other" useByScannerDiscovery="false" value="-fmessage-length=0" valueType="string"/>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.1878567315" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="USE_HAL_DRIVER"/>

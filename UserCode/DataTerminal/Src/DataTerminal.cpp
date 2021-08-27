@@ -12,6 +12,8 @@
 #include <cstring>
 #include "usart.h"
 #include "LEDManager.h"
+#include "BootLoaderState.h"
+#include "BootLoaderIdleState.h"
 
 #ifdef ENABLE_TERMINAL
 
@@ -20,10 +22,11 @@ DataTerminal& DataTerminal::instance() {
 	return __instance;
 }
 
-DataTerminal::DataTerminal() :
-						mTermPort(&huart6) {
+DataTerminal::DataTerminal() : mTermPort(&huart6) {
 	mReadIndex = 0;
 	mWriteIndex = 0;
+	mCurrentState = new BootLoaderIdleState(this);
+	mDownloadingApp = false;
 }
 
 void DataTerminal::init() {
@@ -32,7 +35,7 @@ void DataTerminal::init() {
 }
 
 void DataTerminal::processCharacter(char c) {
-
+	mCurrentState->handleReceivedByte(c);
 }
 
 void DataTerminal::run() {
@@ -58,6 +61,21 @@ bool DataTerminal::isTxBuffEmpty() {
 void DataTerminal::writeByte(uint8_t byte) {
 	mTxBuff[mWriteIndex++] = byte;
 	mWriteIndex %= TERM_BUFF_LEN;
+}
+
+void DataTerminal::setStateTo(BootLoaderState* state) {
+	if(state){
+		delete mCurrentState;
+		mCurrentState = state;
+	}
+}
+
+void DataTerminal::flush() {
+	while(!isTxBuffEmpty()){
+		mTermPort.send(mTxBuff + mReadIndex, 1, 10);
+		mReadIndex++;
+		mReadIndex %= TERM_BUFF_LEN;
+	}
 }
 
 #endif

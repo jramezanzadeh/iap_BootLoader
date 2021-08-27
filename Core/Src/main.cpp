@@ -32,11 +32,13 @@
 /* USER CODE BEGIN Includes */
 #include "Debug.h"
 #include "LEDManager.h"
+#include "DataTerminal.hpp"
+#include "FlashOperation.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef void (*pFunction)(void);
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -57,7 +59,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+void jump();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -105,19 +107,28 @@ int main(void)
 	/* USER CODE BEGIN WHILE */
 	debuger << "Starting BootLoader ..." << endl;
 	debuger.enableBuffering();
-
+	dataTerminal.init();
 	ledManager.blink(LedManager::ACT, 1000);
 
-	uint32_t lastTime = HAL_GetTick();
+	uint32_t startTime = HAL_GetTick();
 	while (1)
 	{
 		/* USER CODE END WHILE */
-		if(HAL_GetTick() - lastTime > 1000){
-			lastTime = HAL_GetTick();
-			ledManager.pulse(LedManager::TX, 100);
-			debuger << "Test" << endl;
+		// jump to app after 2 secs waiting for start command
+		if((HAL_GetTick() - startTime > 2000) &&
+				!dataTerminal.isDowloadingApp()){
+			startTime = HAL_GetTick();
+			if(flash.isValidAppExist()){
+				debuger << "existing App is valid" << endl;
+				debuger.flush();
+				jump();
+				while(1);
+			}else{
+				debuger << "existing App isn't valid" << endl;
+			}
 		}
 		/* USER CODE BEGIN 3 */
+		dataTerminal.run();
 		debuger.run();
 		ledManager.run();
 	}
@@ -178,7 +189,20 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void jump() {
+	HAL_RCC_DeInit();
+	HAL_DeInit();
+	__disable_irq();
+	/// Initialize user application's Stack Pointer
+	__set_MSP(*(__IO uint32_t*) flash.getAppAddress());
 
+	/// Reset interrupt vector to application
+	SCB->VTOR = flash.getAppAddress();
+	// Start the application
+	pFunction start = (pFunction) (*(__IO uint32_t*) (flash.getAppAddress() + 4));
+	start();
+	//while(1);
+}
 /* USER CODE END 4 */
 
 /**
